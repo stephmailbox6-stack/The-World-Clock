@@ -24,5 +24,25 @@ function updatetime() {
   tokyoDateElement.innerHTML = tokyoTime.format("MMMM Do YYYY");
   tokyoTimeElement.innerHTML = tokyoTime.format("h:mm:ss [<small>]A[</small>]");
 }
+
+function newLocation(event) {
+  let locationTimeZone = event.target.value;
+  let locationName = locationTimeZone.replace("_", " ").split("/")[1];
+  let locationTime = moment().tz(locationTimeZone);
+  let locationSelectElement = document.querySelector("#city-change");
+  locationSelectElement.innerHTML = `
+   <div class="city">
+          <div>
+            <h2>${locationName}</h2>
+            <div class="date">${locationTime.format("MMMM Do YYYY")}</div>
+          </div>
+          <div class="time">${locationTime.format("h:mm:ss")} <small>${locationTime.format("A")}</small></div>
+        </div>
+  `;
+}
+
 updatetime();
 setInterval(updatetime, 1000);
+
+let locationElement = document.querySelector("#location");
+locationElement.addEventListener("change", newLocation);
