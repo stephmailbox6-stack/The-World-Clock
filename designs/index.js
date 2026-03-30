@@ -41,6 +41,7 @@ function newLocation(event) {
           </div>
           <div class="time">${locationTime.format("h:mm:ss")} <small>${locationTime.format("A")}</small></div>
         </div>
+        <a href="/">Back to home page</a>
   `;
 }
 
